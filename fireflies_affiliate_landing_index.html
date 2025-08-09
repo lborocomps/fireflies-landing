@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fireflies.ai — AI Meeting Notes & Transcripts (Affiliate)</title>
+  <meta name="description" content="Let AI take your meeting notes. Record, transcribe, and summarize calls automatically with Fireflies.ai. Start free in minutes." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fireflies.ai — AI Meeting Notes & Transcripts" />
+  <meta property="og:description" content="Record, transcribe, and summarize calls automatically. Start free in minutes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" />
+  <meta property="og:image:alt" content="People in a meeting with laptops" />
+  <meta property="og:site_name" content="Fireflies.ai Affiliate" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fireflies.ai — AI Meeting Notes & Transcripts" />
+  <meta name="twitter:description" content="Let AI take your meeting notes so you can stay present in the conversation." />
+
+  <style>
+    :root {
+      --bg: #0b0b11;
+      --panel: #111119;
+      --muted: #a9acc7;
+      --text: #e8e9f3;
+      --brand: #7c3aed; /* violet */
+      --brand-2: #22d3ee; /* cyan */
+      --ok: #10b981;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -20%, rgba(124,58,237,.25), transparent 60%),
+                  radial-gradient(800px 400px at 90% 0%, rgba(34,211,238,.2), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1200px, 92vw); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(11,11,17,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight: 700; letter-spacing: .2px; }
+    .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 24px rgba(124,58,237,.6); }
+    .nav a { opacity: .9; }
+    .navmenu { display:flex; align-items:center; gap: 22px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 999px; font-weight: 700; border: 1px solid rgba(255,255,255,.1); transition: transform .15s ease, background .2s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0b11; box-shadow: var(--shadow); border: none; }
+    .btn-outline { background: transparent; color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 56px 0 18px; text-align: center; }
+    .title { font-size: clamp(32px, 6vw, 64px); line-height: 1.05; margin: 8px 0 12px; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: clamp(16px, 2.5vw, 20px); margin: 0 auto; max-width: 800px; }
+    .cta-row { display:flex; gap: 12px; justify-content: center; align-items: center; margin-top: 24px; flex-wrap: wrap; }
+
+    .pillbar { display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; margin: 22px 0 8px; }
+    .pill { font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: #0b0b11; padding: 8px 12px; border-radius: 999px; background: rgba(34,211,238,.8); font-weight: 800; }
+    .pill.secondary { background: rgba(124,58,237,.85); color: #0b0b11; }
+
+    /* Trust row */
+    .trust { margin: 28px auto 8px; padding: 14px 16px; border-radius: var(--radius); background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); display:flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .trust .item { display:flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
+
+    /* Panels */
+    .section { padding: 56px 0; }
+    .panel {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 28px; box-shadow: var(--shadow);
+    }
+    .panel.reverse { grid-template-columns: 1fr 1.2fr; }
+    .panel h3 { margin: 0 0 10px; font-size: 28px; letter-spacing: -.01em; }
+    .panel p { color: var(--muted); margin: 0 0 12px; }
+    .feature-list { display:grid; gap: 10px; margin-top: 14px; }
+    .feature { display:flex; gap: 12px; align-items: flex-start; }
+    .badge { flex:0 0 28px; height: 28px; width: 28px; border-radius: 8px; display:grid; place-items:center; background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.35); }
+    .badge svg { width: 16px; height: 16px; }
+
+    /* Steps */
+    .steps { display:grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 16px; }
+    .step { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; }
+    .step h4 { margin: 0 0 6px; }
+    .step p { margin: 0; color: var(--muted); }
+
+    /* Use cases */
+    .usecases { display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 18px; }
+    .card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; min-height: 160px; display:flex; flex-direction: column; justify-content: space-between; }
+    .card h5 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0 0 12px; color: var(--muted); }
+
+    /* FAQ */
+    .faq { display:grid; gap: 12px; margin-top: 12px; }
+    details { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px 16px; }
+    details summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin: 8px 0 0; }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; }
+    .foot { display:flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 24px 0 40px; color: var(--muted); font-size: 14px; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .panel, .panel.reverse { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .usecases { grid-template-columns: 1fr 1fr; }
+      .hero { padding-top: 36px; }
+    }
+
+    /* Small helpers */
+    .sr-only { position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .muted { color: var(--muted); }
+    .link { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="Site brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Fireflies.ai Guide</span>
+      </div>
+      <nav class="navmenu" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored" aria-label="Start free on Fireflies.ai (opens in a new tab)">Start Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="pillbar" aria-hidden="true">
+        <span class="pill">AI notetaker</span>
+        <span class="pill secondary">Works with popular meeting tools</span>
+      </div>
+      <h1 id="hero-title" class="title">Let AI take your meeting notes</h1>
+      <p class="subtitle">Stay present in conversations while Fireflies.ai automatically records, transcribes, and summarizes your calls. Share searchable notes with teammates in seconds.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start Free with Fireflies.ai</a>
+        <a class="btn btn-outline" href="#features">See what you get</a>
+      </div>
+      <div class="trust">
+        <div class="item">✅ Quick setup</div>
+        <div class="item">🔒 Privacy-first workflows</div>
+        <div class="item">📝 Accurate transcripts</div>
+        <div class="item">🤝 Team collaboration</div>
+      </div>
+    </section>
+
+    <section id="features" class="section container">
+      <div class="panel">
+        <div>
+          <h3>Everything you need to remember every meeting</h3>
+          <p>Capture the entire conversation and turn it into accessible knowledge. Fireflies.ai helps you keep track of decisions, action items, and follow‑ups—without manual note‑taking.</p>
+          <div class="feature-list">
+            <div class="feature">
+              <div class="badge" aria-hidden="true">📼</div>
+              <div>
+                <strong>Auto‑record & transcribe</strong>
+                <p class="muted">Join meetings automatically and get high‑quality transcripts you can search and share.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="badge" aria-hidden="true">🧠</div>
+              <div>
+                <strong>Smart summaries</strong>
+                <p class="muted">Instant summaries with key points, decisions, and next steps so nothing slips through the cracks.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="badge" aria-hidden="true">🔎</div>
+              <div>
+                <strong>Search across calls</strong>
+                <p class="muted">Find any moment by keyword, speaker, or topic. Share clips instead of sending long recordings.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="badge" aria-hidden="true">⚡</div>
+              <div>
+                <strong>Works with your stack</strong>
+                <p class="muted">Use it alongside popular conferencing and collaboration tools your team already uses.</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <a class="btn btn-primary" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Try it free</a>
+          </div>
+        </div>
+        <div aria-hidden="true">
+          <!-- Decorative mock UI -->
+          <div style="background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 16px; box-shadow: var(--shadow);">
+            <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom:12px;">
+              <div style="display:flex; gap:6px;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;display:inline-block"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:#f59e0b;display:inline-block"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:#10b981;display:inline-block"></span>
+              </div>
+              <strong>Meeting Summary</strong>
+              <span class="muted" style="font-size:12px">00:45:12</span>
+            </div>
+            <div style="display:grid; gap:10px;">
+              <div style="background: rgba(124,58,237,.12); border:1px solid rgba(124,58,237,.35); border-radius:12px; padding:12px;">
+                <strong>Key points</strong>
+                <ul class="muted" style="margin:6px 0 0 18px;">
+                  <li>Launch timeline confirmed for next sprint.</li>
+                  <li>Pricing page experiment scheduled.</li>
+                  <li>Follow‑ups assigned to owners.</li>
+                </ul>
+              </div>
+              <div style="background: rgba(34,211,238,.12); border:1px solid rgba(34,211,238,.35); border-radius:12px; padding:12px;">
+                <strong>Action items</strong>
+                <ol class="muted" style="margin:6px 0 0 18px;">
+                  <li>Share demo deck with prospect by Friday.</li>
+                  <li>Draft onboarding checklist.</li>
+                  <li>Prepare Q3 roadmap notes.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section container">
+      <h3 style="margin:0 0 12px">How it works</h3>
+      <p class="muted" style="margin:0 0 16px">Get value in minutes—no complex setup required.</p>
+      <div class="steps">
+        <div class="step">
+          <h4>1) Sign up</h4>
+          <p>Create your account and connect your calendar.</p>
+        </div>
+        <div class="step">
+          <h4>2) Meet as usual</h4>
+          <p>Fireflies.ai joins your calls to record and transcribe.</p>
+        </div>
+        <div class="step">
+          <h4>3) Share & follow up</h4>
+          <p>Send summaries, assign tasks, and keep everyone aligned.</p>
+        </div>
+      </div>
+      <div class="cta-row" style="margin-top:22px">
+        <a class="btn btn-primary" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Create a free account</a>
+      </div>
+    </section>
+
+    <section id="use-cases" class="section container">
+      <h3 style="margin:0 0 12px">Who is it for?</h3>
+      <div class="usecases">
+        <div class="card">
+          <div>
+            <h5>Sales & Success</h5>
+            <p>Keep spotless call notes, coach with real examples, and never lose next steps.</p>
+          </div>
+          <a class="link" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start free →</a>
+        </div>
+        <div class="card">
+          <div>
+            <h5>Product & Engineering</h5>
+            <p>Capture decisions, requirements, and context to reduce meeting thrash.</p>
+          </div>
+          <a class="link" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start free →</a>
+        </div>
+        <div class="card">
+          <div>
+            <h5>Recruiting</h5>
+            <p>Share interview highlights and align quickly with hiring panels.</p>
+          </div>
+          <a class="link" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start free →</a>
+        </div>
+        <div class="card">
+          <div>
+            <h5>Operations</h5>
+            <p>Standardize meeting outcomes and keep projects moving forward.</p>
+          </div>
+          <a class="link" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start free →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section container">
+      <h3 style="margin:0 0 12px">FAQ</h3>
+      <div class="faq">
+        <details>
+          <summary>Is this the official Fireflies.ai website?</summary>
+          <p>No. This is an independent promotional page. I may earn a commission if you sign up using the links on this page.</p>
+        </details>
+        <details>
+          <summary>Do I need to take notes manually?</summary>
+          <p>Fireflies.ai automatically records and transcribes your meetings so you can focus on the conversation.</p>
+        </details>
+        <details>
+          <summary>Which meeting platforms are supported?</summary>
+          <p>Fireflies.ai works with popular conferencing tools and calendars used by most teams.</p>
+        </details>
+        <details>
+          <summary>Is there a free plan?</summary>
+          <p>Yes—click any “Start Free” button on this page to check the latest free and paid options.</p>
+        </details>
+      </div>
+      <div class="cta-row" style="margin-top:22px">
+        <a class="btn btn-primary" href="https://fireflies.ai/?fpr=logan40" target="_blank" rel="noopener nofollow sponsored">Start Free</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> Fireflies.ai Affiliate Landing • Not affiliated with Fireflies.ai, trademarks belong to their owners.</div>
+      <div>
+        <a class="link" href="#content">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data for better SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fireflies.ai",
+    "applicationCategory": "Productivity",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "1"
+    }
+  }
+  </script>
+</body>
+</html>
